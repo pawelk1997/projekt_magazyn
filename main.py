@@ -8,15 +8,32 @@ items = [
 ]
 
 def get_items(items):
-    print("Name\tQuantity\tUnit\tUnit Price (PLN)")
-    print(50 * "=")
+    print("Name\t\t\tQuantity\t\tUnit\t\tUnit Price (PLN)")
+    print(80 * "=")
     for item in items:
         name = item["name"]
         quantity = item["quantity"]
         unit = item["unit"]
         unit_price = float(item["unit_price"])
-        print(f"{name}\t{quantity}\t{unit}\t{unit_price}")
+        print(f"{name}\t\t{quantity}\t\t\t{unit}\t\t\t{unit_price}")
 
+def add_item(items):
+    print("Adding to warehouse...")
+    name = input("Item name: ")
+    quantity = float(input("Item quantity"))
+    unit = float(input("Item unit of measuer: "))
+    unit_price = float(input("Item price in PLN: "))
+
+    new_item = {
+        "name": name,
+        "quantity": quantity,
+        "unit": unit,
+        "unit_price": unit_price
+    }
+
+    items.append(new_item)
+    print("Successfully added to warehouse. Current status: ")
+    get_items(items)
 
 if __name__ == "__main__":
     print("Magazyn")
@@ -26,5 +43,7 @@ if __name__ == "__main__":
         if todo == "exit":
             logging.info("Exiting... Bye!")
             break
-        if todo == "show":
+        elif todo == "show":
             get_items(items)
+        elif todo == "add":
+            add_item(items)
